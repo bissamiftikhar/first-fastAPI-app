@@ -1,43 +1,58 @@
-# 🛰️ FastAPI Deployment to AWS EC2
+### ✅ `deployment/aws-deploy.md`
 
-This document logs how the FastAPI Todo API was deployed to an AWS EC2 instance.
+```markdown
+# 🛰️ FastAPI on AWS EC2
 
----
-
-## ✅ Setup Summary
-
-| Step | Task |
-|------|------|
-| 1️⃣ | Launched EC2 instance (Ubuntu 22.04) |
-| 2️⃣ | Opened ports 22 (SSH) and 8000 (API) in the security group |
-| 3️⃣ | Connected via SSH |
-| 4️⃣ | Installed Python3, pip, and created a virtual environment |
-| 5️⃣ | Cloned the GitHub repo |
-| 6️⃣ | Installed FastAPI & Uvicorn inside virtualenv |
-| 7️⃣ | Ran app using `uvicorn main:app --host 0.0.0.0 --port 8000` |
+How this project was deployed on an Ubuntu EC2 instance.
 
 ---
 
-## 🌐 Accessing the API
+## ✅ Setup Steps
 
-- Public IPv4: `http://56.228.34.122:8000`
-- Example endpoint: `http://56.228.34.122:8000/todos`
-- API Docs: `http://56.228.34.122:8000/docs`
+```bash
+# 1. Launch EC2 (Ubuntu 22.04)
+# 2. Open ports: 22 (SSH), 8000 (API)
+# 3. SSH into instance
+ssh -i your-key.pem ubuntu@your-public-ip
+
+# 4. Install Python & Git
+sudo apt update && sudo apt install python3-pip git -y
+
+# 5. Clone repo & enter folder
+git clone https://github.com/your/repo.git
+cd repo
+
+# 6. Create virtual env & install deps
+python3 -m venv venv
+source venv/bin/activate
+pip install fastapi uvicorn
+
+# 7. Start the API
+uvicorn main:app --host 0.0.0.0 --port 8000
+Visit: http://<your-public-ip>:8000
+
+🖼️ Screenshots
+✅ EC2 instance running
+
+✅ API live in browser
+
+Add images in screenshots/ and reference them here.
+
+🔁 Keep API Running (Optional)
+Using screen
+bash
+Copy
+Edit
+sudo apt install screen
+screen -S fastapi
+uvicorn main:app --host 0.0.0.0 --port 8000
+Press Ctrl+A then D to detach.
+
+🧼 Stop Charges
+Don't forget to stop EC2 from AWS console after testing.
+
+yaml
+Copy
+Edit
 
 ---
-## 🖼️ Screenshots
-
-### EC2 Instance
-![EC2](../assets/fastapi-todo-2.png)
-
-### /todos Endpoint in Browser
-![Todos](../assets/fastapi-todo-1.png)
-
----
-
-## ⚠️ Common Issues & Fixes
-
-### 🔒 Port 80 Permission Error
-
-When running on port 80:
-

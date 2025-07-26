@@ -1,99 +1,65 @@
 # 📝 FastAPI Todo API
 
-A simple Todo API built using **FastAPI** and a minimal **HTML frontend** to fetch todos.
+A simple REST API built with **FastAPI** and a minimal **HTML frontend**.
 
 ---
 
-## 📂 Files
+## 📁 Project Structure
 
-- `main.py` – FastAPI backend with todo endpoints
-- `test.html` – Frontend file using `fetch()` to access the API
-
----
----
-
-## 🚀 Deployment Logs
-
-📦 [Day 2 – AWS EC2 Deployment Details](deployment/aws-deploy.md)
+- `main.py` – FastAPI backend with `/todos` endpoint  
+- `test.html` – HTML file using `fetch()` to get todos  
+- `deployment/aws-deploy.md` – AWS EC2 deployment steps  
 
 ---
 
-## ⚙️ How to Run Locally
+## 🚀 Deployment
 
-### 1. Create and activate virtual environment
+📄 [EC2 Setup Guide →](deployment/aws-deploy.md)
+
+---
+
+## ⚙️ Run Locally
 
 ```bash
+# 1. Create virtual environment
 python3 -m venv venv
 source venv/bin/activate
-```
 
-### 2. Install required packages
-
-```bash
+# 2. Install packages
 pip install fastapi uvicorn
-```
 
-### 3. Run the API server
-
-```bash
+# 3. Start API server
 uvicorn main:app --reload
 ```
 
-### 4. Open in browser
-
-- ✅ Root check: [http://localhost:8000](http://localhost:8000)
-- ✅ API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
-- ✅ Todos: [http://localhost:8000/todos](http://localhost:8000/todos)
+Visit:
+- 🧪 API: [http://localhost:8000/todos](http://localhost:8000/todos)  
+- 📘 Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
-## 💡 Example Usage
-
-- Add todo: `POST /todos?task=Go to gym`
-- Get all todos: `GET /todos`
-
----
-
-## 🌐 Frontend (test.html)
+## 🌐 Frontend Demo (`test.html`)
 
 ```html
 <script>
-  fetch("http://localhost:8000/todos")
-    .then(res => res.json())
-    .then(data => console.log(data));
+fetch("http://localhost:8000/todos")
+  .then(res => res.json())
+  .then(data => console.log(data));
 </script>
 ```
 
-Open this file in your browser → Right-click → Inspect → Console → See the todo list.
-
----
-
-## 🧠 Notes
-
-- You may get **CORS** error if using Live Server. Fix it by adding CORS middleware in `main.py`.
-
-```python
-from fastapi.middleware.cors import CORSMiddleware
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-```
+Open in browser → Inspect → Console → View response.
 
 ---
 
 ## 🛠 Built With
 
-- Python
-- FastAPI
+- Python + FastAPI
 - Uvicorn
-- HTML + JavaScript
+- HTML + JS
 
 ---
 
-## 👨‍💻 Author
+## 👤 Author
 
 [Bissam Iftikhar](https://github.com/bissamiftikhar)
