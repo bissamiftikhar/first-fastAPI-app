@@ -10,6 +10,13 @@ A simple Todo API built using **FastAPI** and a minimal **HTML frontend** to fet
 - `test.html` – Frontend file using `fetch()` to access the API
 
 ---
+---
+
+## 🚀 Deployment Logs
+
+📦 [Day 2 – AWS EC2 Deployment Details](deployment/aws-deploy.md)
+
+---
 
 ## ⚙️ How to Run Locally
 
