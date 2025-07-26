@@ -1,14 +1,14 @@
 # 🚀 FastAPI Todo API
 
-This is a beginner-friendly Todo API built using **FastAPI** (Python) with a simple frontend test using `fetch()` in **test.html**.
+A simple REST API for managing todo tasks using **FastAPI**, along with a minimal HTML frontend using the `fetch` API for testing.
 
 ---
 
 ## 📁 Project Structure
 
 fastapi-project/
-├── main.py # FastAPI backend code (Python)
-└── test.html # Simple frontend that calls the API using fetch
+├── main.py # FastAPI backend code
+└── test.html # Frontend to fetch todos from API
 
 yaml
 Copy
@@ -16,30 +16,48 @@ Edit
 
 ---
 
-## 🌐 API Features
+## 🔧 Features
 
-- `GET /` — Check if API is working  
-- `POST /todos?task=Go to gym` — Add a todo task  
-- `GET /todos` — Get the full list of todos  
+- ✅ `GET /` – Check if API is working
+- ✅ `POST /todos?task=Go to gym` – Add a new todo task
+- ✅ `GET /todos` – Retrieve all todos
 
 ---
 
-## 🧪 Try Locally
+## ▶️ Running the Project Locally
 
-1. **Start the server**
+### 1. Install dependencies
 
 ```bash
+pip install fastapi uvicorn
+2. Run the FastAPI server
+bash
+Copy
+Edit
 uvicorn main:app --reload
-Open in browser:
+3. Access in your browser
+API root: http://localhost:8000
 
-http://localhost:8000 – Root check
+Swagger UI: http://localhost:8000/docs
 
-http://localhost:8000/docs – Swagger UI (API tester)
+Todos API: http://localhost:8000/todos
 
-test.html – Run this file in browser to see fetched todos in console
+🌐 Frontend Testing
+Open test.html in a browser. It uses JavaScript's fetch() to call the /todos endpoint and logs the data to the console.
 
-⚠️ CORS Issue in test.html
-You’ll need to enable CORS in main.py if using from another origin (like Live Server):
+test.html Example:
+html
+Copy
+Edit
+<script>
+  fetch("http://localhost:8000/todos")
+    .then(res => res.json())
+    .then(data => console.log(data));
+</script>
+Open DevTools → Console to view the todos.
+
+🛡️ Fixing CORS Error (if needed)
+If you're accessing the API from a different origin (like Live Server), add this middleware to main.py:
 
 python
 Copy
@@ -52,18 +70,16 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-🧰 Tech Stack
-FastAPI (Python)
+⚙️ Tech Stack
+FastAPI – Python web framework
 
-Uvicorn (ASGI server)
+Uvicorn – ASGI server
 
-HTML + JavaScript (fetch API)
+HTML + JavaScript – Frontend for testing
 
-📦 Run Once with:
-bash
-Copy
-Edit
-pip install fastapi uvicorn
-👨‍💻 Author
+🧑‍💻 Author
 Bissam Iftikhar
-GitHub
+GitHub: @bissamiftikhar
+
+📌 License
+This project is for learning/demo purposes and doesn't use a specific license.
