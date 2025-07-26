@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test Todos</title>
+  </head>
+  <body>
+    <h1>Check console for Todos</h1>
+
+    <script>
+      fetch("http://localhost:8000/todos")
+        .then(res => res.json())
+        .then(data => console.log(data));
+    </script>
+  </body>
+</html>
