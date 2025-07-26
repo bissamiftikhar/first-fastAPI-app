@@ -1,67 +1,71 @@
-# 🚀 FastAPI Todo API
+# 📝 FastAPI Todo API
 
-A simple REST API for managing todo tasks using **FastAPI**, along with a minimal HTML frontend using the `fetch` API for testing.
-
----
-
-## 📁 Project Structure
-
-fastapi-project/
-├── main.py # FastAPI backend code
-└── test.html # Frontend to fetch todos from API
-
-yaml
-Copy
-Edit
+A simple Todo API built using **FastAPI** and a minimal **HTML frontend** to fetch todos.
 
 ---
 
-## 🔧 Features
+## 📂 Files
 
-- ✅ `GET /` – Check if API is working
-- ✅ `POST /todos?task=Go to gym` – Add a new todo task
-- ✅ `GET /todos` – Retrieve all todos
+- `main.py` – FastAPI backend with todo endpoints
+- `test.html` – Frontend file using `fetch()` to access the API
 
 ---
 
-## ▶️ Running the Project Locally
+## ⚙️ How to Run Locally
 
-### 1. Install dependencies
+### 1. Create and activate virtual environment
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 2. Install required packages
 
 ```bash
 pip install fastapi uvicorn
-2. Run the FastAPI server
-bash
-Copy
-Edit
+```
+
+### 3. Run the API server
+
+```bash
 uvicorn main:app --reload
-3. Access in your browser
-API root: http://localhost:8000
+```
 
-Swagger UI: http://localhost:8000/docs
+### 4. Open in browser
 
-Todos API: http://localhost:8000/todos
+- ✅ Root check: [http://localhost:8000](http://localhost:8000)
+- ✅ API docs: [http://localhost:8000/docs](http://localhost:8000/docs)
+- ✅ Todos: [http://localhost:8000/todos](http://localhost:8000/todos)
 
-🌐 Frontend Testing
-Open test.html in a browser. It uses JavaScript's fetch() to call the /todos endpoint and logs the data to the console.
+---
 
-test.html Example:
-html
-Copy
-Edit
+## 💡 Example Usage
+
+- Add todo: `POST /todos?task=Go to gym`
+- Get all todos: `GET /todos`
+
+---
+
+## 🌐 Frontend (test.html)
+
+```html
 <script>
   fetch("http://localhost:8000/todos")
     .then(res => res.json())
     .then(data => console.log(data));
 </script>
-Open DevTools → Console to view the todos.
+```
 
-🛡️ Fixing CORS Error (if needed)
-If you're accessing the API from a different origin (like Live Server), add this middleware to main.py:
+Open this file in your browser → Right-click → Inspect → Console → See the todo list.
 
-python
-Copy
-Edit
+---
+
+## 🧠 Notes
+
+- You may get **CORS** error if using Live Server. Fix it by adding CORS middleware in `main.py`.
+
+```python
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
@@ -70,16 +74,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-⚙️ Tech Stack
-FastAPI – Python web framework
+```
 
-Uvicorn – ASGI server
+---
 
-HTML + JavaScript – Frontend for testing
+## 🛠 Built With
 
-🧑‍💻 Author
-Bissam Iftikhar
-GitHub: @bissamiftikhar
+- Python
+- FastAPI
+- Uvicorn
+- HTML + JavaScript
 
-📌 License
-This project is for learning/demo purposes and doesn't use a specific license.
+---
+
+## 👨‍💻 Author
+
+[Bissam Iftikhar](https://github.com/bissamiftikhar)
