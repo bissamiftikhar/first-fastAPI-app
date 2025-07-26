@@ -1,6 +1,3 @@
-### ✅ `deployment/aws-deploy.md`
-
-```markdown
 # 🛰️ FastAPI on AWS EC2
 
 How this project was deployed on an Ubuntu EC2 instance.
@@ -29,30 +26,38 @@ pip install fastapi uvicorn
 
 # 7. Start the API
 uvicorn main:app --host 0.0.0.0 --port 8000
-Visit: http://<your-public-ip>:8000
+```
 
-🖼️ Screenshots
-✅ EC2 instance running
+Visit: `http://<your-public-ip>:8000`
 
-✅ API live in browser
+---
 
-Add images in screenshots/ and reference them here.
 
-🔁 Keep API Running (Optional)
-Using screen
-bash
-Copy
-Edit
+## 📸 Screenshots
+
+### ✅ EC2 Instance Running  
+![EC2 Screenshot](../assets/fastapi-todo-2.png.png)
+
+### ✅ /todos Endpoint in Browser  
+![Todos Endpoint](../assets/fastapi-todo-1.png.png)
+
+
+---
+
+## 🔁 Keep API Running (Optional)
+
+### Using `screen`
+
+```bash
 sudo apt install screen
 screen -S fastapi
 uvicorn main:app --host 0.0.0.0 --port 8000
-Press Ctrl+A then D to detach.
+```
 
-🧼 Stop Charges
-Don't forget to stop EC2 from AWS console after testing.
-
-yaml
-Copy
-Edit
+Press `Ctrl+A` then `D` to detach.
 
 ---
+
+## 🧼 Stop Charges
+
+Don't forget to **stop EC2** from AWS console after testing.
