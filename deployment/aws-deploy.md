@@ -36,10 +36,10 @@ Visit: `http://<your-public-ip>:8000`
 ## 📸 Screenshots
 
 ### ✅ EC2 Instance Running  
-![EC2 Screenshot](../assets/fastapi-todo-2.png.png)
+![EC2 Screenshot](../assets/fastapi-todo-2.png)
 
 ### ✅ /todos Endpoint in Browser  
-![Todos Endpoint](../assets/fastapi-todo-1.png.png)
+![Todos Endpoint](../assets/fastapi-todo-1.png)
 
 
 ---
