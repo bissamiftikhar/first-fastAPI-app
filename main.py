@@ -12,7 +12,7 @@ todos = []
 @app.post("/todos")
 def add_todo(task: str):
     todos.append(task)
-    return {"message": "Todo added!"}
+    return {"message": "Todo ci.cd sameetadded!"}
 
 @app.get("/todos")
 def get_todos():
