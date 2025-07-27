@@ -3,26 +3,35 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - main
+      - main  # or master, depending on your repo
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-    - name: Deploy over SSH
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ubuntu
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          cd ~/first-fastAPI-app
-          git pull origin main
-          docker stop todo-app || true
-          docker rm todo-app || true
-          docker build -t fastapi-todo .
-          docker run -d -p 80:80 --name todo-app fastapi-todo
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-todo:latest .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-todo:latest
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-todo:latest
+            docker stop todo-app || true
+            docker rm todo-app || true
+            docker run -d -p 80:80 --name todo-app ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-todo:latest
