@@ -21,7 +21,7 @@ jobs:
 
     - name: Build and push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-todo:v1 .
+        docker build --no-cache -t ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-todo:v1 .
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/fastapi-todo:v1
 
     - name: Deploy on EC2 via SSH
