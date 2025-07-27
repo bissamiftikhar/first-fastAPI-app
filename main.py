@@ -4,7 +4,7 @@ app = FastAPI()
 
 @app.get("/")
 def hello():
-    return {"message": "API is working!"}
+    return {"message": "API is dockerized working!"}
 
 # Todo list storage
 todos = []
