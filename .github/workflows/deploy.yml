@@ -28,14 +28,21 @@ jobs:
         push: true
         tags: bissam3/fastapi-todo:v1
 
-    - name: SSH into EC2 and Deploy
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.EC2_HOSTT }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_SSH_KEY }}
-        script: |
-          docker pull bissam3/fastapi-todo:v1
-          docker stop todo-app || true
-          docker rm todo-app || true
-          docker run -d -p 80:80 --name todo-app bissam3/fastapi-todo:v1
+        
+
+    
+
+    - name: Deploy to EC2
+  uses: appleboy/ssh-action@master
+  with:
+    host: ${{ secrets.EC2_HOST }}
+    username: ${{ secrets.EC2_USER }}
+    key: ${{ secrets.EC2_KEY }}
+    script: |
+      cd ~/first-fastAPI-app
+      git pull origin main
+      docker stop todo-app || true
+      docker rm todo-app || true
+      docker build -t fastapi-todo .
+      docker run -d -p 80:80 --name todo-app fastapi-todo
+
